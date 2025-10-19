@@ -199,6 +199,7 @@ def create_policy_response(
     server_transport: Transport,
     tool_name: str,
     response_content: str,
+    agent_context: AgentContext,
     env_context: EnvironmentContext
 ) -> PolicyResponse:
     """Create a properly structured policy response"""
@@ -221,6 +222,14 @@ def create_policy_response(
             }
         },
         context={
+            "agent": {
+                "last_user_prompt": agent_context.last_user_prompt,
+                "context_summary": agent_context.context_summary,
+                "user_prompt_id": agent_context.user_prompt_id,
+                "intent": agent_context.intent,
+                "plan": agent_context.plan,
+                "expected_outputs": agent_context.expected_outputs
+            },
             "env": {
                 "session_id": env_context.session_id,
                 "workspace": env_context.workspace,
