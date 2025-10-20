@@ -24,9 +24,9 @@ classifiers = [
 dependencies = []
 
 [project.urls]
-Homepage = "https://github.com/ai-mcpower/mcpower-shared"
-Repository = "https://github.com/ai-mcpower/mcpower-shared"
-Issues = "https://github.com/ai-mcpower/mcpower-shared/issues"
+Homepage = "https://github.com/MCPower-Security/mcpower-shared"
+Repository = "https://github.com/MCPower-Security/mcpower-shared"
+Issues = "https://github.com/MCPower-Security/mcpower-shared/issues"
 
 [tool.setuptools.packages.find]
 where = ["."]

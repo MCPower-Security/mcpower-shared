@@ -7,13 +7,13 @@ Shared types and utilities for MCPower projects.
 Install directly from GitHub:
 
 ```bash
-pip install git+https://github.com/ai-mcpower/mcpower-shared.git
+pip install git+https://github.com/MCPower-Security/mcpower-shared.git
 ```
 
 Or add to your `requirements.txt`:
 
 ```
-mcpower_shared @ git+https://github.com/ai-mcpower/mcpower-shared.git
+mcpower_shared @ git+https://github.com/MCPower-Security/mcpower-shared.git
 ```
 
 ## Usage
