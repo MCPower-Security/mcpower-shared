@@ -18,9 +18,10 @@ ClientOS = Literal["windows", "unix", "macos", "linux"]
 @dataclass
 class ServerRef:
     """Reference to an MCP server - aligned with MCP specification"""
-    name: str                    # Server name (not id) - MCP uses names
-    transport: Transport         # stdio or http - from MCP spec
-    version: Optional[str] = None # Server version if available
+    name: str                      # Server name (not id) - MCP uses names
+    transport: Transport           # stdio or http - from MCP spec
+    version: Optional[str] = None  # Server version if available
+    context: Optional[str] = None  # additional context, could be "ide", defaults to "mcp"
 
 @dataclass
 class ToolRef:
