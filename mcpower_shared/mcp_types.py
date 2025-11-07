@@ -150,13 +150,11 @@ class ConfirmationHistoryEntry:
 
 def create_policy_request(
     event_id: str,
-    server_name: str,
-    server_transport: Transport,
-    tool_name: str,
+    server: ServerRef,
+    tool: ToolRef,
     arguments: Dict[str, Any],
     agent_context: AgentContext,
     env_context: EnvironmentContext,
-    tool_description: Optional[str] = None
 ) -> PolicyRequest:
     """Create a properly structured policy request"""
 
@@ -164,16 +162,8 @@ def create_policy_request(
         event_id=event_id,
         timestamp=datetime.now().isoformat() + "Z",
         direction="request",
-        server=ServerRef(
-            name=server_name,           # Use 'name' not 'id' per your feedback
-            transport=server_transport,  # stdio/http from MCP spec
-            version=None
-        ),
-        tool=ToolRef(
-            name=tool_name,
-            description=tool_description,
-            version=None
-        ),
+        server=server,
+        tool=tool,
         arguments_redacted=arguments,
         context={
             "agent": {
@@ -196,9 +186,8 @@ def create_policy_request(
 
 def create_policy_response(
     event_id: str,
-    server_name: str,
-    server_transport: Transport,
-    tool_name: str,
+    server: ServerRef,
+    tool: ToolRef,
     response_content: str,
     agent_context: AgentContext,
     env_context: EnvironmentContext
@@ -209,11 +198,8 @@ def create_policy_response(
         event_id=event_id,
         timestamp=datetime.now().isoformat() + "Z",
         direction="response",
-        server=ServerRef(
-            name=server_name,
-            transport=server_transport
-        ),
-        tool=ToolRef(name=tool_name),
+        server=server,
+        tool=tool,
         result_preview={
             "text_head": response_content,
             "bytes_hash": None,  # Would be hash for binary content
@@ -261,9 +247,8 @@ if __name__ == "__main__":
 
     request = create_policy_request(
         event_id="demo-001",
-        server_name="filesystem-tools",     # name, not id
-        server_transport="stdio",           # MCP transport type
-        tool_name="fs.read",
+        server=ServerRef(name="filesystem-tools", transport="stdio"),
+        tool=ToolRef(name="fs.read"),
         arguments={"path": "/home/user/project/README.md"},
         agent_context=agent_ctx,
         env_context=env_ctx
