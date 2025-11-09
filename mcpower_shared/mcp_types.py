@@ -179,7 +179,9 @@ def create_policy_request(
                 "workspace": env_context.workspace,
                 "client": env_context.client,
                 "client_version": env_context.client_version,
-                "selection_hash": env_context.selection_hash
+                "selection_hash": env_context.selection_hash,
+                "client_os": env_context.client_os,
+                "app_id": env_context.app_id
             }
         }
     )
@@ -220,7 +222,11 @@ def create_policy_response(
             "env": {
                 "session_id": env_context.session_id,
                 "workspace": env_context.workspace,
-                "client": env_context.client
+                "client": env_context.client,
+                "client_version": env_context.client_version,
+                "selection_hash": env_context.selection_hash,
+                "client_os": env_context.client_os,
+                "app_id": env_context.app_id
             }
         }
     )
