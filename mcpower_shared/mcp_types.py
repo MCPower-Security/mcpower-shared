@@ -30,6 +30,7 @@ class ToolRef:
     description: Optional[str] = None # Tool description if available
     version: Optional[str] = None # Tool version if available
     full_history: Optional[List['ConfirmationHistoryEntry']] = None  # All tool calls including non-user-input calls
+    arguments: Optional[Dict[str, str]] = None  # Tool arguments' description: argument name=>description
 
 @dataclass
 class AgentContext:
